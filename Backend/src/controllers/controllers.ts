@@ -1,5 +1,7 @@
 import { Perfil } from "../bd/perfil"
-
+import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
+ 
 
 export const perfilController =  async (nombre:string, biografia:string, imagen:string) => {
     try {
@@ -23,8 +25,5 @@ try {
     console.error(error)
     throw new Error("Error al obtener el perfil")
 }
-
-
-
-
 }
+

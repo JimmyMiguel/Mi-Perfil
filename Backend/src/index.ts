@@ -1,10 +1,11 @@
 import Express, { response, request } from "express";
- import { sequelize } from "./bd";
- import dotenv from "dotenv"
- import { Perfil } from "./bd/perfil";
-  import cors from 'cors'
- import { perfilController, getPerfilController } from "./controllers/controllers";
-
+import { sequelize } from "./bd";
+import dotenv from "dotenv"
+import { Perfil } from "./bd/perfil";
+import cors from 'cors'
+import { perfilController, getPerfilController } from "./controllers/controllers";
+import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
 const app = Express()
 
 app.use(cors());
@@ -41,9 +42,15 @@ bootstrap()
 
 
 app.post('/perfil', async (req, res) => {
+
+
   const { nombre, biografia, imagen } = req.body
-  const perfil = await perfilController(nombre, biografia, imagen)
-  res.status(200).json(perfil)
+  if (!nombre || !biografia || !imagen) {
+    return res.status(400).json({ error: 'Todos los campos son requeridos' })
+  } else {
+    const perfil = await perfilController(nombre, biografia, imagen)
+    res.status(200).json(perfil)
+  }
 })
 
 
