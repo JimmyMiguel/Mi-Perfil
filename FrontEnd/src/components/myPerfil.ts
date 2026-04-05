@@ -3,13 +3,6 @@ export class myPerfil extends HTMLElement {
         super();
         this.render()
     }
-
-
-
-
-
-
-
     render() {
         this.innerHTML = `
         <style>
@@ -190,25 +183,24 @@ export class myPerfil extends HTMLElement {
 
 <!-- HTML -->
 <div class="profile-wrapper">
-  <div class="profile-card">
+  <form class="profile-card" id="perfilForm">
     <p class="profile-title">Editar perfil</p>
 
     <div class="field-group">
-      <label class="field-label">Nombre</label>
-      <input class="field-input" type="text" placeholder="Tu nombre completo" />
+      <label class="field-label" for="nombreInput">Nombre</label>
+      <input class="field-input" type="text" id="nombreInput" name="nombre" placeholder="Tu nombre completo" required />
     </div>
 
     <div class="field-group">
-      <label class="field-label">Biografía</label>
-      <textarea class="field-textarea" placeholder="Cuéntanos un poco sobre ti..."></textarea>
+      <label class="field-label" for="bioInput">Biografía</label>
+      <textarea class="field-textarea" id="bioInput" name="bio" placeholder="Cuéntanos un poco sobre ti..." required></textarea>
     </div>
 
     <div class="field-group">
       <label class="field-label">Imagen de perfil</label>
       <div class="drop-zone" id="dropZone">
-        <input type="file" accept="image/*" id="fileInput" />
-       </div>
-
+        <input type="file" accept="image/*" id="fileInput" name="fotoPerfil" required />
+      </div>
 
       <div class="drop-preview" id="preview">
         <img id="previewImg" src="" alt="preview" />
@@ -216,9 +208,11 @@ export class myPerfil extends HTMLElement {
       </div>
     </div>
 
-    <button class="save-btn"><span>Guardar perfil</span></button>
-  </div>
-</div>        `
+    <button type="submit" class="save-btn" id="submitBtn">
+      <span>Guardar perfil</span>
+    </button>
+  </form>
+</div> `
     }
 }
 
